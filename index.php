@@ -40,6 +40,8 @@ if(!empty($_POST)){
         }
 
     }
+}else{
+    $data = array('err'=>'not set parameters');
 }
 
 echo json_encode($data);
