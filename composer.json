@@ -1,0 +1,16 @@
+{
+  "name": "JapanAniversaryAPI",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "do9iigane",
+      "email": "dokumegane@interestic.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "~1.0",
+    "phpunit/phpunit": "4.8.*"
+  }
+}
