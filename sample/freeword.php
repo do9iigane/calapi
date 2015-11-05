@@ -21,20 +21,21 @@ class freeword
         $loader = new \Twig_Loader_Filesystem('./template');
         $this->twig = new \Twig_Environment($loader, array(
             'cache' => './cache',
-            'debug' => false
+            'debug' => true
         ));
     }
 
     public function err_check($post)
     {
         $result = array();
-        if (empty($post['K'])) {
-            $result['K'] = "キーワードが設定されていません";
+
+        if (empty($post['keyword'])) {
+            $result['keyword'] = "キーワードが設定されていません";
         }
-        if (empty($post['K'])) {
-            $result['SK'] = "検索方法を選択してください";
+        if (!isset($post['search_key'])) {
+            $result['search_key'] = "検索方法を選択してください";
         }
-        if (empty($post['K'])) {
+        if (empty($post['MD'])) {
             $result['MD'] = "正しく処理できませんでした";
         }
 
@@ -47,6 +48,7 @@ $data = array();
 
 if (!empty($_POST)) {
     $data['post_data'] = $_POST;
+
     $error = $class->err_check($_POST);
 
     if ($error) {

@@ -28,11 +28,11 @@ class day
     public function err_check($post)
     {
         $result = array();
-        if (empty($post['M'])) {
-            $result['M'] = "キーワードが設定されていません";
+        if (empty($post['month'])) {
+            $result['month'] = "キーワードが設定されていません";
         }
-        if (empty($post['D'])) {
-            $result['D'] = "検索方法を選択してください";
+        if (empty($post['day'])) {
+            $result['day'] = "検索方法を選択してください";
         }
         if (empty($post['MD'])) {
             $result['MD'] = "正しく処理できませんでした";

@@ -50,14 +50,14 @@
         <input type="hidden" name="MD" value="1">
         <div>
 
-            <select id="m" name="M">
+            <select id="m" name="month">
                 {% for key,month in data.range.month %}
-                    <option value="{{ month }}" {% if data.post_data.M is defined and month==data.post_data.M %}selected{% endif %}>{{ month }}</option>
+                    <option value="{{ month }}" {% if data.post_data.month is defined and month==data.post_data.month %}selected{% endif %}>{{ month }}</option>
                 {% endfor %}
             </select>月
-            <select id="d" name="D">
+            <select id="d" name="day">
                 {% for key,day in data.range.day %}
-                    <option value="{{ day }}" {% if data.post_data.D is defined and day==data.post_data.D %}selected{% endif %}>{{ day }}</option>
+                    <option value="{{ day }}" {% if data.post_data.day is defined and day==data.post_data.day %}selected{% endif %}>{{ day }}</option>
                 {% endfor %}
             </select>日
         </div>

@@ -52,7 +52,7 @@
 
         <div class="form-group">
             <label for="searchword">検索</label>
-            <input type="text" name="K" class="form-control" id="searchword" placeholder="search word here." value="{% if data.post_data.K is defined %}{{ data.post_data.K }}{% endif %}">
+            <input type="text" name="keyword" class="form-control" id="searchword" placeholder="search word here." value="{% if data.post_data.keyword is defined %}{{ data.post_data.keyword }}{% endif %}">
         </div>
 
         {% if data.error is defined %}
@@ -61,12 +61,12 @@
 
         <div class="radio">
             <label>
-                    <input type="radio" name="SK" id="optionsRadios1" value="1" {% if data.post_data.SK == 1 %}checked{% endif %}>いずれかを含む
+                    <input type="radio" name="search_key" id="optionsRadios1" value="1" {% if data.post_data.search_key == 1 %}checked{% endif %}>いずれかを含む
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="SK" id="optionsRadios2" value="0" {% if data.post_data.SK ==0 %}checked{% endif %}>すべてを含む
+                <input type="radio" name="search_key" id="optionsRadios2" value="0" {% if data.post_data.search_key ==0 %}checked{% endif %}>すべてを含む
             </label>
         </div>
 
