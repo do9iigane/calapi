@@ -64,4 +64,4 @@ if (!empty($_POST)) {
     }
 }
 
-echo $class->twig->render('day.twig', array('data' => $data));
+echo $class->twig->render('date.twig', array('data' => $data));
