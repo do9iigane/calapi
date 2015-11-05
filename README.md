@@ -3,13 +3,13 @@
 ## endpoint
 http://kinenbiapi.herokuapp.com
 
+## sample
+### [by date](http://kinenbiapi.herokuapp.com/sample/date.php "day")
+### [by freeword](http://kinenbiapi.herokuapp.com/sample/freeword.php "freeword")
 ## method
 POST
-
 ## parameter
-
 ### by date
-
 <dl>
   <dt>month</dt>
   <dd>1 - 12</dd>
