@@ -35,24 +35,36 @@ class japanAniversaryTest extends PHPUnit_Framework_TestCase
     public function for_post_to_endpoint()
     {
         return array(
-            array(array('MD' => '2', 'K' => 'ソーセージ パンケーキ', 'SK' => '0'), 1),
-            array(array('MD' => '2', 'K' => 'ソーセージ パンケーキ', 'SK' => '1'), 4),
-            array(array('MD' => '2', 'K' => 'ソーセージ パンケーキ', 'SK' => '2'), 4),
-            array(array('MD' => '1', 'K' => 'ソーセージ パンケーキ', 'SK' => '0'), 1),
-            array(array('MD' => '1', 'K' => 'ソーセージ パンケーキ', 'SK' => '1'), 1),
-            array(array('MD' => '1', 'K' => 'ソーセージ パンケーキ', 'SK' => '2'), 1),
-            array(array('MD' => '2', 'K' => 'ソーセージ', 'SK' => '0'), 4),
-            array(array('MD' => '2', 'K' => 'ソーセージ', 'SK' => '1'), 4),
-            array(array('MD' => '2', 'K' => 'ソーセージ', 'SK' => '2'), 4),
-            array(array('MD' => '1', 'K' => 'ソーセージ', 'SK' => '0'), 1),
-            array(array('MD' => '1', 'K' => 'ソーセージ', 'SK' => '1'), 1),
-            array(array('MD' => '1', 'K' => 'ソーセージ', 'SK' => '2'), 1),
-            array(array('MD' => '2', 'K' => '', 'SK' => '0'), 1),
-            array(array('MD' => '2', 'K' => '', 'SK' => '1'), 1),
-            array(array('MD' => '2', 'K' => '', 'SK' => '2'), 1),
-            array(array('MD' => '1', 'K' => '', 'SK' => '0'), 1),
-            array(array('MD' => '1', 'K' => '', 'SK' => '1'), 1),
-            array(array('MD' => '1', 'K' => '', 'SK' => '2'), 1),
+            array(array('MD' => '2', 'keyword' => 'ソーセージ パンケーキ', 'search_key' => '0'), 1),
+            array(array('MD' => '2', 'keyword' => 'ソーセージ パンケーキ', 'search_key' => '1'), 4),
+            array(array('MD' => '2', 'keyword' => 'ソーセージ パンケーキ', 'search_key' => '2'), 4),
+            array(array('MD' => '1', 'keyword' => 'ソーセージ パンケーキ', 'search_key' => '0'), 1),
+            array(array('MD' => '1', 'keyword' => 'ソーセージ パンケーキ', 'search_key' => '1'), 1),
+            array(array('MD' => '1', 'keyword' => 'ソーセージ パンケーキ', 'search_key' => '2'), 1),
+            array(array('MD' => '2', 'keyword' => 'ソーセージ', 'search_key' => '0'), 4),
+            array(array('MD' => '2', 'keyword' => 'ソーセージ', 'search_key' => '1'), 4),
+            array(array('MD' => '2', 'keyword' => 'ソーセージ', 'search_key' => '2'), 4),
+            array(array('MD' => '1', 'keyword' => 'ソーセージ', 'search_key' => '0'), 1),
+            array(array('MD' => '1', 'keyword' => 'ソーセージ', 'search_key' => '1'), 1),
+            array(array('MD' => '1', 'keyword' => 'ソーセージ', 'search_key' => '2'), 1),
+            array(array('MD' => '2', 'keyword' => '', 'search_key' => '0'), 1),
+            array(array('MD' => '2', 'keyword' => '', 'search_key' => '1'), 1),
+            array(array('MD' => '2', 'keyword' => '', 'search_key' => '2'), 1),
+            array(array('MD' => '1', 'keyword' => '', 'search_key' => '0'), 1),
+            array(array('MD' => '1', 'keyword' => '', 'search_key' => '1'), 1),
+            array(array('MD' => '1', 'keyword' => '', 'search_key' => '2'), 1),
+            array(array('MD' => '1', 'month' => '6', 'day' => '13'), 5),
+            array(array('MD' => '1', 'month' => '1', 'day' => '2'), 1),
+            array(array('MD' => '1', 'month' => '', 'day' => '1'), 8),
+            array(array('MD' => '1', 'month' => '1', 'day' => ''), 8),
+            array(array('MD' => '1', 'month' => '', 'day' => '1'), 8),
+            array(array('MD' => '1', 'month' => '', 'day' => ''), 8),
+            array(array('MD' => '', 'month' => '', 'day' => ''), 8),
+            array(array('MD' => '', 'month' => '1', 'day' => ''), 8),
+            array(array('MD' => '', 'month' => '', 'day' => '1'), 8),
+            array(array('MD' => '', 'month' => '1', 'day' => ''), 8),
+            array(array('MD' => '', 'month' => '1', 'day' => '1'), 4),
+
         );
     }
 
@@ -76,9 +88,9 @@ class japanAniversaryTest extends PHPUnit_Framework_TestCase
     public function for_post_request()
     {
         return array(
-            array(array('K' => 'ソーセージ パンケーキ'), 26952),
-            array(array('K' => 'りんご'), 26842),
-            array(array('K' => ''), 26797),
+            array(array('keyword' => 'ソーセージ パンケーキ'), 33200),
+            array(array('keyword' => 'りんご'), 33002),
+            array(array('keyword' => ''), 32921),
         );
     }
 
