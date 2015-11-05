@@ -18,7 +18,7 @@ class JapanAniversary
     /**
      * @var null
      */
-    public $post = null;
+    public $post = array();
 
     /**
      * @param $post
@@ -28,7 +28,25 @@ class JapanAniversary
 
         //endpoint
         //http://www.kinenbi.gr.jp/
-        $this->post = $post;
+
+        if(isset($post['keyword'])){
+            $this->post['K'] = $post['keyword'];
+        }
+
+        if(isset($post['search_key'])){
+            $this->post['SK'] = $post['search_key'];
+        }
+        if(isset($post['month'])){
+            $this->post['M'] = $post['month'];
+        }
+
+        if(isset($post['day'])){
+            $this->post['D'] = $post['day'];
+        }
+        if(isset($post['MD'])){
+            $this->post['MD'] = $post['MD'];
+        }
+
         $this->endpoint_url = "http://www.kinenbi.gr.jp/";
     }
 
@@ -98,7 +116,7 @@ class JapanAniversary
                     $result[$cnt]['month'] = str_pad($match2[1], 2, 0, STR_PAD_LEFT);
                     $result[$cnt]['day'] = str_pad($match2[2], 2, 0, STR_PAD_LEFT);
                     $cnt++;
-                } elseif (empty($match2[1]) && isset($result[$cnt]['name'])&&isset($this->post['M'])) {
+                } elseif (empty($match2[1]) && isset($result[$cnt]['name']) && isset($this->post['M'])) {
                     $result[$cnt]['month'] = $this->post['M'];
                     $result[$cnt]['day'] = $this->post['D'];
                     $cnt++;
