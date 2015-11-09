@@ -46,4 +46,7 @@ if (!empty($class->postdata)) {
 
     }
 }
+
+$data['post_data'] = $class->postdata;
+
 echo $class->twig->render('freeword.twig', array('data' => $data));
