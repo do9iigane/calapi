@@ -13,20 +13,13 @@ class index
 
     public function __construct()
     {
+        $this->postdata = $_POST;
+        $this->ja = new \src\JapanAniversary($this->postdata);
     }
 
-    public function err_check($post)
+    public function err_check()
     {
-        $result = array();
-        if (empty($post['keyword'])) {
-            $result['keyword'] = "キーワードが設定されていません";
-        }
-        if (empty($post['search_key'])) {
-            $result['search_key'] = "検索方法を選択してください";
-        }
-        if (empty($post['MD'])) {
-            $result['MD'] = "正しく処理できませんでした";
-        }
+        $result = $this->ja->err_check($this->postdata);
 
         return $result;
     }
@@ -35,15 +28,14 @@ class index
 $class = new index();
 $data = array();
 
-if (!empty($_POST)) {
-    $data['post_data'] = $_POST;
-    $error = $class->err_check($_POST);
+if (!empty($class->postdata)) {
+    $error = $class->ja->err_check($class->postdata);
 
     if ($error) {
-        $data['error'] = "キーワードが設定されていません";
+        $data['error'] = $error;
     } else {
-        $ja = new \src\JapanAniversary($_POST);
-        $result = $ja->post_to_endpoint();
+        $ja =
+        $result = $class->ja->post_to_endpoint();
         if ($result) {
             $data['result'] = $result;
         }

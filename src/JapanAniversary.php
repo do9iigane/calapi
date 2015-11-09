@@ -29,21 +29,21 @@ class JapanAniversary
         //endpoint
         //http://www.kinenbi.gr.jp/
 
-        if(isset($post['keyword'])){
+        if (isset($post['keyword'])) {
             $this->post['K'] = $post['keyword'];
         }
 
-        if(isset($post['search_key'])){
+        if (isset($post['search_key'])) {
             $this->post['SK'] = $post['search_key'];
         }
-        if(isset($post['month'])){
+        if (isset($post['month'])) {
             $this->post['M'] = $post['month'];
         }
 
-        if(isset($post['day'])){
+        if (isset($post['day'])) {
             $this->post['D'] = $post['day'];
         }
-        if(isset($post['MD'])){
+        if (isset($post['MD'])) {
             $this->post['MD'] = $post['MD'];
         }
 
@@ -115,18 +115,20 @@ class JapanAniversary
                 if (!empty($match2[1])) {
                     $result[$cnt]['month'] = str_pad($match2[1], 2, 0, STR_PAD_LEFT);
                     $result[$cnt]['day'] = str_pad($match2[2], 2, 0, STR_PAD_LEFT);
-                    $result[$cnt]['google_cal_date'] = $this->getGoogleCalDate($result[$cnt]['month'],$result[$cnt]['day']);
+                    $result[$cnt]['google_cal_date'] = $this->getGoogleCalDate($result[$cnt]['month'],
+                        $result[$cnt]['day']);
 
                     $cnt++;
                 } elseif (empty($match2[1]) && isset($result[$cnt]['name']) && isset($this->post['M'])) {
                     $result[$cnt]['month'] = $this->post['M'];
                     $result[$cnt]['day'] = $this->post['D'];
-                    $result[$cnt]['google_cal_date'] = $this->getGoogleCalDate($this->post['M'],$this->post['D']);
+                    $result[$cnt]['google_cal_date'] = $this->getGoogleCalDate($this->post['M'], $this->post['D']);
                     $cnt++;
                 }
             }
 
         }
+
         return $result;
 
     }
@@ -160,19 +162,59 @@ class JapanAniversary
 
     }
 
-    public function getGoogleCalDate($month,$day){
+    public function getGoogleCalDate($month, $day)
+    {
         $now_year = date('Y');
         $today = strtotime(date('Y/m/d'));
         $holiday = strtotime("{$now_year}/{$month}/{$day}");
 
-        $year = $holiday <= $today ? $now_year+1 : $now_year;
-        return
-            $year.
-            str_pad($month,2,0,STR_PAD_LEFT).
-            str_pad($day,2,0,STR_PAD_LEFT)."/".
-            $year.
-            str_pad($month,2,0,STR_PAD_LEFT).
-            str_pad((int) $day+1,2,0,STR_PAD_LEFT);
+        $year = $holiday <= $today ? $now_year + 1 : $now_year;
 
+        return
+            $year .
+            str_pad($month, 2, 0, STR_PAD_LEFT) .
+            str_pad($day, 2, 0, STR_PAD_LEFT) . "/" .
+            $year .
+            str_pad($month, 2, 0, STR_PAD_LEFT) .
+            str_pad((int)$day + 1, 2, 0, STR_PAD_LEFT);
+
+    }
+
+    public function err_check($post)
+    {
+        $result = array();
+
+//        if (empty($post['MD'])) {
+//            $result['MD'] = "正しく処理できませんでした";
+//
+//            return $result;
+//        }
+
+        if (empty($post['mode'])) {
+            $result['mode'] = "正しく処理できませんでした";
+            return $result;
+        }
+
+        switch ($post['mode']) {
+            case 'freeword':
+                if (empty($post['keyword'])) {
+                    $result['keyword'] = "キーワードが設定されていません";
+                }
+                if (!isset($post['search_key'])) {
+                    $result['search_key'] = "検索方法を選択してください";
+                }
+                break;
+
+            case 'date':
+                if (empty($post['month'])) {
+                    $result['month'] = "キーワードが設定されていません";
+                }
+                if (empty($post['day'])) {
+                    $result['day'] = "検索方法を選択してください";
+                }
+                break;
+        }
+
+        return $result;
     }
 }

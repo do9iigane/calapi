@@ -56,7 +56,9 @@
         </div>
 
         {% if data.error is defined %}
-            <font color="red">{{ data.error }}</font>
+        {% for errors in data.error %}
+            <font color="red">{{ errors }}</font>
+        {% endfor %}
         {% endif %}
 
         <div class="radio">
@@ -71,6 +73,7 @@
         </div>
 
         <div class="whatday_search">
+            <input type="hidden" name="mode" value="freeword">
             <input type="submit">
         </div>
     </form>

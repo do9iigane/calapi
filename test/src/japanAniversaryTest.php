@@ -88,9 +88,9 @@ class japanAniversaryTest extends PHPUnit_Framework_TestCase
     public function for_post_request()
     {
         return array(
-            array(array('keyword' => 'ソーセージ パンケーキ'), 33200),
-            array(array('keyword' => 'りんご'), 33002),
-            array(array('keyword' => ''), 32921),
+            array(array('keyword' => 'ソーセージ パンケーキ'), 32896),
+            array(array('keyword' => 'りんご'), 32698),
+            array(array('keyword' => ''), 32617),
         );
     }
 

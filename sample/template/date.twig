@@ -62,9 +62,17 @@
             </select>日
         </div>
         <div class="whatday_search">
+            <input type="hidden" name="mode" value="date">
             <input type="submit">
         </div>
     </form>
+
+    {% if data.error is defined %}
+        {% for errors in data.error %}
+            <font color="red">{{ errors }}</font>
+        {% endfor %}
+    {% endif %}
+
 
     {% if data.result is defined %}
         <h3>検索結果</h3>

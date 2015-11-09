@@ -23,22 +23,8 @@ class day
             'cache' => './cache',
             'debug' => true
         ));
-    }
-
-    public function err_check($post)
-    {
-        $result = array();
-        if (empty($post['month'])) {
-            $result['month'] = "キーワードが設定されていません";
-        }
-        if (empty($post['day'])) {
-            $result['day'] = "検索方法を選択してください";
-        }
-        if (empty($post['MD'])) {
-            $result['MD'] = "正しく処理できませんでした";
-        }
-
-        return $result;
+        $this->postdata = $_POST;
+        $this->ja = new \src\JapanAniversary($this->postdata);
     }
 }
 
@@ -47,15 +33,13 @@ $data = array();
 $data['range']['month'] = range(1, 12);
 $data['range']['day'] = range(1, 31);
 
-if (!empty($_POST)) {
-    $data['post_data'] = $_POST;
-    $error = $class->err_check($_POST);
+if (!empty($class->postdata)) {
+    $error = $class->ja->err_check($class->postdata);
 
     if ($error) {
-        $data['error'] = "キーワードが設定されていません";
+        $data['error'] = $error;
     } else {
-        $ja = new \src\JapanAniversary($_POST);
-        $result = $ja->post_to_endpoint();
+        $result = $class->ja->post_to_endpoint();
 
         if ($result) {
             $data['result'] = $result;
