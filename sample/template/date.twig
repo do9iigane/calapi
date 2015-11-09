@@ -71,7 +71,13 @@
         <table class="table table-striped table-bordered table-hover">
             {% for aniversary in data.result %}
                 <tr>
-                    <td class="col-xs-6 col-md-1">{{ aniversary.month }}月{{ aniversary.day }}日</td>
+                    <td class="col-xs-6 col-md-2">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <a target="_blank"
+                           href="http://www.google.com/calendar/event?action=TEMPLATE&text={{ aniversary.name|url_encode }}&dates={{ aniversary.google_cal_date }}&details={{ aniversary.description|url_encode }}">
+                            {{ aniversary.month }}月{{ aniversary.day }}日
+                        </a>
+                    </td>
                     <td class="col-xs-6 col-md-3">{{ aniversary.name }}</td>
                     <td class="col-xs-6 col-md-6">{{ aniversary.description }}</td>
                 </tr>

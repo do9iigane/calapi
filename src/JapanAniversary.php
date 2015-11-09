@@ -115,17 +115,18 @@ class JapanAniversary
                 if (!empty($match2[1])) {
                     $result[$cnt]['month'] = str_pad($match2[1], 2, 0, STR_PAD_LEFT);
                     $result[$cnt]['day'] = str_pad($match2[2], 2, 0, STR_PAD_LEFT);
+                    $result[$cnt]['google_cal_date'] = $this->getGoogleCalDate($result[$cnt]['month'],$result[$cnt]['day']);
+
                     $cnt++;
                 } elseif (empty($match2[1]) && isset($result[$cnt]['name']) && isset($this->post['M'])) {
                     $result[$cnt]['month'] = $this->post['M'];
                     $result[$cnt]['day'] = $this->post['D'];
+                    $result[$cnt]['google_cal_date'] = $this->getGoogleCalDate($this->post['M'],$this->post['D']);
                     $cnt++;
                 }
-
             }
 
         }
-
         return $result;
 
     }
@@ -156,6 +157,22 @@ class JapanAniversary
         } else {
             return false;
         }
+
+    }
+
+    public function getGoogleCalDate($month,$day){
+        $now_year = date('Y');
+        $today = strtotime(date('Y/m/d'));
+        $holiday = strtotime("{$now_year}/{$month}/{$day}");
+
+        $year = $holiday <= $today ? $now_year+1 : $now_year;
+        return
+            $year.
+            str_pad($month,2,0,STR_PAD_LEFT).
+            str_pad($day,2,0,STR_PAD_LEFT)."/".
+            $year.
+            str_pad($month,2,0,STR_PAD_LEFT).
+            str_pad((int) $day+1,2,0,STR_PAD_LEFT);
 
     }
 }
