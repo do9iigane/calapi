@@ -32,7 +32,7 @@ POST
 
 ## EXAMPLE
 
-```
+```php
 
     <?php
     $data = http_build_query($post_data, "", "&");
