@@ -15,8 +15,9 @@ namespace src;
 class JapanAniversary
 {
 
+
     /**
-     * @var null
+     * @var array
      */
     public $post = array();
 
@@ -25,9 +26,6 @@ class JapanAniversary
      */
     public function __construct($post)
     {
-
-        //endpoint
-        //http://www.kinenbi.gr.jp/
 
         if (isset($post['keyword'])) {
             $this->post['K'] = $post['keyword'];
@@ -70,8 +68,8 @@ class JapanAniversary
             )
         );
 
-
-        return file_get_contents($this->endpoint_url, false, stream_context_create($context));
+        $result = file_get_contents($this->endpoint_url, false, stream_context_create($context));
+        return $result;
     }
 
     /**
@@ -162,6 +160,11 @@ class JapanAniversary
 
     }
 
+    /**
+     * @param $month
+     * @param $day
+     * @return string
+     */
     public function getGoogleCalDate($month, $day)
     {
         $now_year = date('Y');
@@ -180,18 +183,17 @@ class JapanAniversary
 
     }
 
+    /**
+     * @param $post
+     * @return array
+     */
     public function err_check($post)
     {
         $result = array();
 
-//        if (empty($post['MD'])) {
-//            $result['MD'] = "正しく処理できませんでした";
-//
-//            return $result;
-//        }
-
         if (empty($post['mode'])) {
             $result['mode'] = "正しく処理できませんでした";
+
             return $result;
         }
 

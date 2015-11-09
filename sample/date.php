@@ -46,6 +46,14 @@ if (!empty($class->postdata)) {
         }
 
     }
+}else{
+    $class->postdata['month'] = $class->ja->post['M'] = date('m');
+    $class->postdata['day'] = $class->ja->post['D'] = date('d');
+
+    $data['result'] = $class->ja->post_to_endpoint();
+
 }
+
+$data['post_data'] = $class->postdata;
 
 echo $class->twig->render('date.twig', array('data' => $data));
